@@ -1,0 +1,58 @@
+/* Main */
+body{
+  margin: 0 auto;
+  font-family: "Open Sans", georgia, times, serif;
+}
+
+/* Navigation */
+nav {
+  background-color: #22B573;
+  color: white;
+  margin: 0;
+  padding: 2px;
+}
+nav ul {
+  max-width: 900px;
+  margin: 0;
+}
+nav li {
+  margin-left: 3em;
+  display: inline;
+}
+nav li:first-child {
+  margin-left: 0;
+}
+nav li:hover {
+  color: black;
+}
+#brand {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/*Today*/
+.today {
+  display: block;
+  float: left;
+  margin: 25px;
+  border: 1px solid #22B573;
+  width: 30%;
+  padding-bottom: 30px;
+}
+
+.today h2, .calendars h2 {
+  margin: 0 auto;
+  color: white;
+  background-color: #22B573;
+  padding: 4px;
+}
+
+/*Calendar*/
+.calendars {
+  display: block;
+  float: right;
+  margin: 25px 25px 25px 0px;
+  border: 1px solid #22B573;
+  width: 62%;
+  padding-bottom: 30px;
+}
