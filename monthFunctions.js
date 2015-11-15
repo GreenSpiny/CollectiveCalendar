@@ -27,23 +27,34 @@ function generateMonth(year,month) {
   return dayArray;
 }
 
+function createMonthDiv() {
+
+}
+
 function loadMonth(year,month) {
   var data = generateMonth(year,month);
   // importGoogle(data);
   // importFaceBook(data);
   // importJSON(data);
   
+  var string = "";
+  for (var i = 0; i < 5; i++) {
+    for (var j = 0; j < 7; j++) {
+      string += "<div></div>";
+    }
+    string += "<br>";
+  }
+  console.log(string);
+  $("#days").html(string);
+  
   var i = 0;
-  $("#calendar li").each(function() {
-    cells[i].html(String(data[i].date.getDate()));
+  $("#days div").each(function() {
+    $(this).html(String(data[i].date.getDate()));
     i++;
   });
 
 }
 
-// Code ---------------------------- o
-
-// var test = generateMonth(2015,9);
-// for (var i = 0; i < calendarDays; i++) {
-  // console.log(test[i].date.getDate());
-// }
+$(document).ready(function() {
+  loadMonth(2015,9);
+});
