@@ -1,14 +1,48 @@
-// Data for months
-var months;
-months[0] = ["January",31];
-months[1] = ["February",28];
-months[2] = ["March",31];
-months[3] = ["Arpil",30];
-months[4] = ["May",31];
-months[5] = ["June",30];
-months[6] = ["July",31];
-months[7] = ["August",31];
-months[8] = ["September",30];
-months[9] = ["October",31];
-months[10] = ["November",30];
-months[11] = ["December",31];
+// Dynamic data ---------------------------- o
+
+var today = new Date();
+var currentMonth = today.getMonth();
+var currentYear = today.getYear();
+
+// Static data ---------------------------- o
+
+var calendarDays = 35;
+var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+// Functions ---------------------------- o
+
+function Day(inDate) {
+  this.date = inDate;
+  this.events = [];
+}
+
+function generateMonth(year,month) {
+  var dayArray = [];
+  var firstDay = new Date(year,month,1);
+  
+  for (var i = 0; i < calendarDays; i++) {
+    dayArray[i] = new Day(new Date(firstDay.getFullYear(),firstDay.getMonth(),(i+1)-firstDay.getDay()));
+  }
+  
+  return dayArray;
+}
+
+function loadMonth(year,month) {
+  var data = generateMonth(year,month);
+  // importGoogle(data);
+  // importFaceBook(data);
+  
+  var i = 0;
+  $("#calendar .cell").each(function() {
+    cells[i].html(String(data[i].date.getDate()));
+    i++;
+  });
+
+}
+
+// Code ---------------------------- o
+
+// var test = generateMonth(2015,9);
+// for (var i = 0; i < calendarDays; i++) {
+  // console.log(test[i].date.getDate());
+// }
