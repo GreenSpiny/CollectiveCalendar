@@ -31,9 +31,10 @@ function loadMonth(year,month) {
   var data = generateMonth(year,month);
   // importGoogle(data);
   // importFaceBook(data);
+  // importJSON(data);
   
   var i = 0;
-  $("#calendar .cell").each(function() {
+  $("#calendar li").each(function() {
     cells[i].html(String(data[i].date.getDate()));
     i++;
   });
