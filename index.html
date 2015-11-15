@@ -4,6 +4,8 @@
     <title>Collective Calendar</title>
     <link rel="stylesheet" href="style.css"/>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script type="text/javascript" src="sarah_api_play.js"></script>
   </head>
 
   <body>
@@ -23,9 +25,32 @@
     </div><!--today-->
 
     <!--Calendar Options-->
-    <div class="calendars">
+    <div class="calendar_options">
+      <button id="authorize-button">Authorize</button>
       <h2 id="calendarOptions">CALENDARS</h2>
-    </div><!--calendars-->
+    </div><!--calendar_options-->
+
+    <!--Calendar with the events -->
+    <div class="calendar">
+      <div id="header">
+        <h2>Month</h2>
+      </div> <!--header-->
+      <div id="week_days">
+        <ul>
+          <li>Sunday</li>
+          <li>Monday</li>
+          <li>Tuesday</li>
+          <li>Wednesday</li>
+          <li>Thursday</li>
+          <li>Friday</li>
+          <li>Saturday</li>
+        </ul>
+      </div> <!--days-->
+      <div id="days">
+        <!--will be populated with 35 divs for the calendar blocks-->
+      </div><!--days-->
+
+    </div><!--calendar-->
 
   </body>
 
