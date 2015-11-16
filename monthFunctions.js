@@ -2,7 +2,7 @@
 
 var today = new Date();
 var currentMonth = today.getMonth();
-var currentYear = today.getYear();
+var currentYear = today.getFullYear();
 
 // Static data ---------------------------- o
 
@@ -33,6 +33,8 @@ function createMonthDiv() {
 
 function loadMonth(year,month) {
   var data = generateMonth(year,month);
+  $("#header h2").html(months[currentMonth] + " " + currentYear);
+  
   // importGoogle(data);
   // importFaceBook(data);
   // importJSON(data);
@@ -49,12 +51,26 @@ function loadMonth(year,month) {
 
   var i = 0;
   $(".days div").each(function() {
+  
+    // Day number
     $(this).html(String(data[i].date.getDate()));
+    
+    // Color coding
+    if (data[i].date.getDate() == today.getDate()) {
+      $(this).addClass("todayColor");
+    }
+    else if (data[i].date.getMonth() == today.getMonth()) {
+      $(this).addClass("monthColor");
+    }
+    else {
+      $(this).addClass("offColor");
+    }
+    
     i++;
   });
 
 }
 
 $(document).ready(function() {
-  loadMonth(2015,9);
+  loadMonth(currentYear,currentMonth);
 });

@@ -83,3 +83,15 @@ ul{
   width: 12%;
   padding-right: 3px;
 }
+
+.todayColor {
+  background-color: #fcc;
+}
+
+.monthColor {
+  background-color: #ffb;
+}
+
+.offColor {
+  background-color: #def;
+}
