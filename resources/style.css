@@ -36,7 +36,6 @@ nav li:hover {
   float: left;
   margin: 25px;
   border: 1px solid #22B573;
-  width: 30%;
   padding-bottom: 30px;
   margin-bottom: 100px;
 }
@@ -55,15 +54,15 @@ nav li:hover {
   float: right;
   margin: 25px 25px 25px 0px;
   border: 1px solid #22B573;
-  width: 62%;
   padding-bottom: 30px;
 }
 
-#week_days li{
+.week_days li{
   display: inline;
   list-style-type: none;
-  padding: 2.5%;
   margin-top: 10px;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .calendar {
@@ -71,11 +70,16 @@ nav li:hover {
   float: right;
   margin: 25px 25px 25px 0px;
   border: 1px solid #22B573;
-  width: 62%;
   padding-bottom: 30px;
 }
 
 ul{
   padding: 0;
   margin: 0 auto;
+}
+
+.days>div>.container .two .columns  {
+  display: inline;
+  width: 12%;
+  padding-right: 3px;
 }

@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Collective Calendar</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="resources/skeleton.css"/>
+    <link rel="stylesheet" href="resources/style.css"/>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <!--<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>-->
     <script src="jquery-2.1.4.min.js"></script>
@@ -19,38 +20,42 @@
 		</nav>
 
     <!--Today -->
-    <div class="today">
-      <h2 id="date">TODAY</h2>
-      <ul id="eventsToday">
-      </ul>
-    </div><!--today-->
-
-    <!--Calendar Options-->
-    <div class="calendar_options">
-      <h2 id="calendarOptions">CALENDARS</h2>
-    </div><!--calendar_options-->
-
-    <!--Calendar with the events -->
-    <div class="calendar">
-      <div id="header">
-        <h2>Month</h2>
-      </div> <!--header-->
-      <div id="week_days">
-        <ul>
-          <li>Sunday</li>
-          <li>Monday</li>
-          <li>Tuesday</li>
-          <li>Wednesday</li>
-          <li>Thursday</li>
-          <li>Friday</li>
-          <li>Saturday</li>
+    <div class="container sixteen columns">
+      <div class="today container four columns">
+        <h2 id="date">TODAY</h2>
+        <ul id="eventsToday">
         </ul>
-      </div> <!--days-->
-      <div id="days">
-        <!--will be populated with 35 divs for the calendar blocks-->
-      </div><!--days-->
+      </div><!--today-->
 
-    </div><!--calendar-->
+      <!--Calendar Options-->
+      <div class="container twelve columns">
+        <div class="calendar_options container thirteen columns">
+          <h2 id="calendarOptions">CALENDARS</h2>
+        </div><!--calendar_options-->
+
+        <!--Calendar with the events -->
+        <div class="calendar container thirteen columns">
+          <div id="header">
+            <h2>Month</h2>
+          </div> <!--header-->
+          <div class="week_days container fourteen columns">
+            <ul>
+              <li class="container two columns">Sunday</li>
+              <li class="container two columns">Monday</li>
+              <li class="container two columns">Tuesday</li>
+              <li class="container two columns">Wednesday</li>
+              <li class="container two columns">Thursday</li>
+              <li class="container two columns">Friday</li>
+              <li class="container two columns">Saturday</li>
+            </ul>
+          </div> <!--days-->
+          <div class="days container fourteen columns">
+            <!--will be populated with 35 divs for the calendar blocks-->
+          </div><!--days-->
+
+        </div><!--calendar-->
+      </div><!--container right side-->
+    </div><!--container-->
 
   </body>
 

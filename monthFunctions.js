@@ -19,11 +19,11 @@ function Day(inDate) {
 function generateMonth(year,month) {
   var dayArray = [];
   var firstDay = new Date(year,month,1);
-  
+
   for (var i = 0; i < calendarDays; i++) {
     dayArray[i] = new Day(new Date(firstDay.getFullYear(),firstDay.getMonth(),(i+1)-firstDay.getDay()));
   }
-  
+
   return dayArray;
 }
 
@@ -36,19 +36,19 @@ function loadMonth(year,month) {
   // importGoogle(data);
   // importFaceBook(data);
   // importJSON(data);
-  
+
   var string = "";
   for (var i = 0; i < 5; i++) {
     for (var j = 0; j < 7; j++) {
-      string += "<div></div>";
+      string += "<div class='container two columns'></div>";
     }
     string += "<br>";
   }
   console.log(string);
-  $("#days").html(string);
-  
+  $(".days").html(string);
+
   var i = 0;
-  $("#days div").each(function() {
+  $(".days div").each(function() {
     $(this).html(String(data[i].date.getDate()));
     i++;
   });
