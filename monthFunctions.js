@@ -4,12 +4,21 @@ var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 
+var selectedDay = today;
+
 // Static data ---------------------------- o
 
 var calendarDays = 35;
 var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 // Functions ---------------------------- o
+
+function Event(start,end,name,desc) {
+  this.startTime = start;
+  this.endTime = end;
+  this.title = name;
+  this.description = desc;
+}
 
 function Day(inDate) {
   this.date = inDate;
@@ -27,10 +36,6 @@ function generateMonth(year,month) {
   return dayArray;
 }
 
-function createMonthDiv() {
-
-}
-
 function loadMonth(year,month) {
   var data = generateMonth(year,month);
   $("#header h2").html(months[currentMonth] + " " + currentYear);
@@ -42,7 +47,7 @@ function loadMonth(year,month) {
   var string = "";
   for (var i = 0; i < 5; i++) {
     for (var j = 0; j < 7; j++) {
-      string += "<div class='container two columns'></div>";
+      string += "<div info='' class='container two columns'></div>";
     }
     string += "<br>";
   }
@@ -66,6 +71,10 @@ function loadMonth(year,month) {
       $(this).addClass("offColor");
     }
     
+    // Set info attribute 
+    $(this).attr("info",(data[i].date).toString());
+    
+    // Increment counter
     i++;
   });
 
@@ -73,4 +82,9 @@ function loadMonth(year,month) {
 
 $(document).ready(function() {
   loadMonth(currentYear,currentMonth);
+  
+  $(".days div").click(function() {
+    $(this).addClass("selected");
+  });
+  
 });
