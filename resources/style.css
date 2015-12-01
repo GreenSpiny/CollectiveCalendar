@@ -97,7 +97,5 @@ ul{
 }
 
 .selected {
-  border-color: #555;
-  border-style: solid;
-  border-width: 2px;
+  background-color: #bbb;
 }

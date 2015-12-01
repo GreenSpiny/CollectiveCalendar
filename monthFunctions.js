@@ -5,6 +5,8 @@ var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 
 var selectedDay = today;
+var selectedEvents;
+var currentData;
 
 // Static data ---------------------------- o
 
@@ -63,6 +65,9 @@ function loadMonth(year,month) {
     // Color coding
     if (data[i].date.getDate() == today.getDate()) {
       $(this).addClass("todayColor");
+      $(this).addClass("selected");
+      selectedDay = (data[i].date).toString();
+      selectedEvents = data[i].events;      
     }
     else if (data[i].date.getMonth() == today.getMonth()) {
       $(this).addClass("monthColor");
@@ -78,12 +83,28 @@ function loadMonth(year,month) {
     i++;
   });
 
+  return data;
 }
 
 $(document).ready(function() {
-  loadMonth(currentYear,currentMonth);
+  // Load in the current month
+  currentData = loadMonth(currentYear,currentMonth);
   
+  // Click on a day to select it
   $(".days div").click(function() {
+    selectedDay = $(this).attr("info");
+    
+    $(".days div").each(function() {
+      $(this).removeClass("selected");
+    });
+    
+    for (var i = 0; i < currentData.length; i++) {
+      if (selectedDay == currentData[i].date.toString()) {
+        selectedEvents = currentData[i].events;
+        console.log(selectedDay);
+      }
+    }
+    
     $(this).addClass("selected");
   });
   
