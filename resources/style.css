@@ -73,6 +73,14 @@ nav li:hover {
   padding-bottom: 30px;
 }
 
+.monthButton {
+  color: #fff;
+  background-color: #22B573;
+  padding: 3px;
+  text-align: center;
+  width: 25px;
+}
+
 ul{
   padding: 0;
   margin: 0 auto;

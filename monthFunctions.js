@@ -4,8 +4,7 @@ var today = new Date();
 var currentMonth = today.getMonth();
 var currentYear = today.getFullYear();
 
-var selectedDay = today;
-var selectedEvents;
+var selectedDay;
 var currentData;
 
 // Static data ---------------------------- o
@@ -22,9 +21,13 @@ function Event(start,end,name,desc) {
   this.description = desc;
 }
 
-function Day(inDate) {
+function Day(inDate,val) {
   this.date = inDate;
   this.events = [];
+}
+
+function sameDay(d1,d2) {
+  return (d1.getFullYear() == d2.getFullYear() && d1.getMonth() == d2.getMonth() && d1.getDate() == d2.getDate());
 }
 
 function generateMonth(year,month) {
@@ -44,7 +47,7 @@ function loadMonth(year,month) {
   
   // importGoogle(data);
   // importFaceBook(data);
-  // importJSON(data);
+  // importPHP(data);
 
   var string = "";
   for (var i = 0; i < 5; i++) {
@@ -53,7 +56,6 @@ function loadMonth(year,month) {
     }
     string += "<br>";
   }
-  console.log(string);
   $(".days").html(string);
 
   var i = 0;
@@ -62,22 +64,43 @@ function loadMonth(year,month) {
     // Day number
     $(this).html(String(data[i].date.getDate()));
     
-    // Color coding
-    if (data[i].date.getDate() == today.getDate()) {
-      $(this).addClass("todayColor");
-      $(this).addClass("selected");
-      selectedDay = (data[i].date).toString();
-      selectedEvents = data[i].events;      
+    // Color coding    
+    if (sameDay(data[i].date,today)) {
+      $(this).addClass("todayColor");  
+      if (selectedDay == null) {
+        $(this).addClass("selected");
+        selectedDay = data[i];    
+      }      
     }
-    else if (data[i].date.getMonth() == today.getMonth()) {
+    else if (data[i].date.getMonth() == currentMonth) {
       $(this).addClass("monthColor");
     }
     else {
       $(this).addClass("offColor");
     }
     
+    if (selectedDay != null && sameDay(selectedDay.date,data[i].date)) {
+      $(this).addClass("selected");
+    }
+    
     // Set info attribute 
     $(this).attr("info",(data[i].date).toString());
+    
+    // Set click function
+    $(this).click(function() {
+      $(".days div").each(function() {
+        $(this).removeClass("selected");
+      });
+      
+      for (var i = 0; i < currentData.length; i++) {
+        if ($(this).attr("info") == currentData[i].date.toString()) {
+          selectedDay = currentData[i];
+          console.log(selectedDay.date.toString());
+        }
+      }
+      
+      $(this).addClass("selected");
+    });
     
     // Increment counter
     i++;
@@ -86,26 +109,20 @@ function loadMonth(year,month) {
   return data;
 }
 
+// Runtime code ---------------------------- o
+
 $(document).ready(function() {
   // Load in the current month
   currentData = loadMonth(currentYear,currentMonth);
   
-  // Click on a day to select it
-  $(".days div").click(function() {
-    selectedDay = $(this).attr("info");
+  // Scroll between months
+  $(".monthButton").click(function() {
+    var shift = $(this).attr("value");
+    var newDate = new Date(currentYear, currentMonth + parseInt(shift),1);
+    currentYear = newDate.getFullYear();
+    currentMonth = newDate.getMonth();
     
-    $(".days div").each(function() {
-      $(this).removeClass("selected");
-    });
-    
-    for (var i = 0; i < currentData.length; i++) {
-      if (selectedDay == currentData[i].date.toString()) {
-        selectedEvents = currentData[i].events;
-        console.log(selectedDay);
-      }
-    }
-    
-    $(this).addClass("selected");
+    currentData = loadMonth(currentYear,currentMonth);
   });
   
 });
