@@ -2,6 +2,7 @@
 body{
   margin: 0 auto;
   font-family: "Open Sans", georgia, times, serif;
+  background: #F5F5F5;
 }
 
 /* Navigation */
@@ -11,20 +12,25 @@ nav {
   margin: 0;
   padding: 2px;
 }
+
 nav ul {
   max-width: 900px;
   margin: 0;
 }
+
 nav li {
   margin-left: 3em;
   display: inline;
 }
+
 nav li:first-child {
   margin-left: 0;
 }
+
 nav li:hover {
   color: black;
 }
+
 #brand {
   font-size: 2em;
   font-weight: bold;
@@ -73,12 +79,32 @@ nav li:hover {
   padding-bottom: 30px;
 }
 
-.monthButton {
-  color: #fff;
+#header{
+  display: block;
+  text-align: center;
+  margin: 0;
   background-color: #22B573;
-  padding: 3px;
+  padding: 4px 0px 5px 0px;
+}
+
+#month {
+  display: inline;
+  padding: 0px 10px 0px 10px;
+}
+
+.monthButton {
+  margin: 0;
+  color: #fff;
+  background-color: rgba(250, 250, 250, .2);
+  padding: 14px 7px 6px 7px;
+  border-bottom: rgba(250, 250, 250, .6) 1px solid;
+  display: inline;
   text-align: center;
   width: 25px;
+}
+
+.monthButton:hover {
+  background-color: rgba(250, 250, 250, .6);
 }
 
 ul{
@@ -92,16 +118,16 @@ ul{
   padding-right: 3px;
 }
 
+.offColor {
+  background-color: #D8D8D8;
+}
+
 .todayColor {
-  background-color: #fcc;
+  background-color: #787878;
 }
 
 .monthColor {
-  background-color: #ffb;
-}
-
-.offColor {
-  background-color: #def;
+  background-color: #C8E6C9;
 }
 
 .selected {
