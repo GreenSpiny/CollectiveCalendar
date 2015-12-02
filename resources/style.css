@@ -120,16 +120,25 @@ ul{
 
 .offColor {
   background-color: #D8D8D8;
+  margin-bottom: 4px;
 }
 
 .todayColor {
   background-color: #787878;
+  margin-bottom: 4px;
 }
 
 .monthColor {
   background-color: #C8E6C9;
+  margin-bottom: 4px;
 }
 
 .selected {
-  background-color: #bbb;
+  background-color: #22B573;
+  margin-bottom: 4px;
+}
+
+/*icon*/
+.icon {
+  margin: 10px 10px 10px 20px;
 }
