@@ -61,9 +61,9 @@ function listUpcomingEvents() {
   var calendars = gapi.client.calendar.calendarList.list();
   var resultList;
   
-  calendars.execute(function(resp1){
-    resultList = resp1.items;
-    var count = resultList.length;
+  calendars.execute(function(resp){
+    resultList = resp.items;
+    console.log(resultList);
     
       for (var i = 0; i < resultList.length; i++) {
       //console.log(resultList[i].description);
@@ -76,8 +76,8 @@ function listUpcomingEvents() {
           'orderBy': 'startTime'
         });
 
-        request.execute(function(resp2) {
-          var events = resp2.items;
+        request.execute(function(resp) {
+          var events = resp.items;
           
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
@@ -99,11 +99,9 @@ function listUpcomingEvents() {
               toReturn.push(new Event(startTime,endTime,title,description));
             }
           }
-          count--;
-          if (count == 0) {
-            console.log(toReturn);
-            return toReturn;
-          }
+
+          console.log(toReturn);
+          return toReturn;
         });
       }
   });
