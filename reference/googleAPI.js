@@ -26,9 +26,6 @@ function handleAuthResult(authResult) {
     // Hide auth UI, then load client library.
     loadCalendarApi();
   }
-  else {
-    handleAuthClick(event)
-  }
 }
 
 /**
@@ -107,6 +104,5 @@ function listUpcomingEvents() {
         });
       }
   });
-
 
 }

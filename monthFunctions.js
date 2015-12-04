@@ -1,3 +1,7 @@
+// ----------------------------------------------------------------------------------------------------------------------//
+// -------------------------------------------------- MONTH FUNCTIONS -------------------------------------------------- //
+// ----------------------------------------------------------------------------------------------------------------------//
+
 // Dynamic data ---------------------------- o
 
 var today = new Date();
@@ -122,7 +126,96 @@ $(document).ready(function() {
     currentYear = newDate.getFullYear();
     currentMonth = newDate.getMonth();
     
+    loadCalendarApi();
     currentData = loadMonth(currentYear,currentMonth);
   });
   
 });
+
+// ---------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------- GOOGLE API ---------------------------------------------------- //
+// ---------------------------------------------------------------------------------------------------------------------//
+
+var CLIENT_ID = '483530694362-2e8fb2sgqndnsprm63nip0dnmk55dn41.apps.googleusercontent.com';
+var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+
+function checkAuth() {
+  gapi.auth.authorize(
+    {
+      'client_id': CLIENT_ID,
+      'scope': SCOPES.join(' '),
+      'immediate': true
+    }, handleAuthResult);
+}
+
+function handleAuthResult(authResult) {
+  if (authResult && !authResult.error) {
+    // Hide auth UI, then load client library.
+    loadCalendarApi();
+  }
+}
+
+function handleAuthClick(event) {
+  gapi.auth.authorize(
+    {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+    handleAuthResult);
+  return false;
+}
+
+function loadCalendarApi() {
+  gapi.client.load('calendar', 'v3', listUpcomingEvents);
+}
+
+function listUpcomingEvents() {
+  var toReturn = [];
+  var calendars = gapi.client.calendar.calendarList.list();
+  var resultList;
+  
+  calendars.execute(function(resp1){
+    resultList = resp1.items;
+    var count = resultList.length;
+    
+      for (var i = 0; i < resultList.length; i++) {
+      //console.log(resultList[i].description);
+        var request = gapi.client.calendar.events.list({
+          'calendarId': resultList[i].id,
+          'timeMin': (new Date(currentYear,currentMonth,1)).toISOString(),
+          'timeMax': (new Date(currentYear,currentMonth+1,0)).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'orderBy': 'startTime'
+        });
+
+        request.execute(function(resp2) {
+          var events = resp2.items;
+          
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              
+              // GET THE DATA WE NEED
+              var startTime = event.start.dateTime;
+              if (!startTime) {
+                startTime = event.start.date;
+              }
+              var endTime = event.end.dateTime;
+              if (!endTime) {
+                endTime = event.end.date;
+              }
+              
+              var title = event.summary;
+              var description = event.description;
+              
+              toReturn.push(new Event(startTime,endTime,title,description));
+            }
+          }
+          count--;
+          if (count == 0) {
+            console.log(toReturn);
+            return toReturn;
+          }
+        });
+      }
+  });
+
+}
