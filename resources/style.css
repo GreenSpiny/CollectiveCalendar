@@ -144,7 +144,7 @@ ul{
 }
 
 .todayColor {
-  background-color: #787878;
+  background-color: #bbbbbb;
   margin-bottom: 4px;
 }
 
@@ -235,4 +235,34 @@ ul{
   border-radius: 5px;
   border-bottom: 2px solid rgba(0,0,0,0.6);
   padding: 4px;
+}
+
+.dayNum {
+  margin: 0px;
+  padding-left: 5px;
+}
+
+.eventNum {
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #777;
+  bottom: 0px;
+  right: 5px;
+}
+
+#leftButton {
+  position: absolute;
+  top: 0px;
+  left: 30%;
+  width: 10px;
+}
+
+#rightButton {
+  position: absolute;
+  top: 0px;
+  right: 30%;
+  width: 10px;
 }

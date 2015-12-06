@@ -85,7 +85,12 @@ function loadMonth(year,month) {
   $(".days div").each(function() {
 
     // Day number
-    $(this).html(String(data[i].date.getDate()));
+    if (data[i].events.length > 0) {
+      $(this).html("<p class='dayNum'>"+String(data[i].date.getDate())+"</p><br>"+"<p class='eventNum'>"+"("+String(data[i].events.length)+")"+"</p>");
+    }
+    else {
+      $(this).html("<p class='dayNum'>"+String(data[i].date.getDate())+"</p><br>"+"<p class='eventNum'></p>");
+    }
 
     // Color coding
     if (sameDay(data[i].date,today)) {
@@ -172,6 +177,16 @@ $(document).ready(function() {
 
   // Click on the gmail icon
   $("#gmail").click(function() {
+    loadCalendarApi();
+    currentData = loadMonth(currentYear,currentMonth);
+  });
+  
+  $(".monthButton").click(function() {
+    var shift = $(this).attr("value");
+    var newDate = new Date(currentYear,currentMonth + parseInt(shift),1);
+    currentYear = newDate.getFullYear();
+    currentMonth = newDate.getMonth();
+    
     loadCalendarApi();
     currentData = loadMonth(currentYear,currentMonth);
   });
