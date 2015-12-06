@@ -173,6 +173,7 @@ ul{
   height: 100%;
   z-index: 10;
   background-color: rgba(0,0,0,0.5);
+
 }
 
 .option {
@@ -190,6 +191,7 @@ ul{
   width: 50%;
   height: 50%;
   border-radius: 10px;
+  border-bottom: 5px solid #22B573;
 }
 
 .green {
@@ -204,7 +206,7 @@ ul{
   background-color: #03A9F4;
 }
 
-#select_color {
+#select_color, #auth {
   margin-left: 20px;
 }
 
@@ -224,4 +226,13 @@ ul{
   list-style-type: none;
   margin-left: 5px;
   margin-bottom: 8px;
+}
+
+#googleButton {
+  margin-left: 20px;
+  background-color: #B6B6B6;
+  display: inline-block;
+  border-radius: 5px;
+  border-bottom: 2px solid rgba(0,0,0,0.6);
+  padding: 4px;
 }
