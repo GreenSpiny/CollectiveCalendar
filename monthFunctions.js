@@ -11,7 +11,7 @@ var currentYear = today.getFullYear();
 var selectedDay;
 var currentData;
 
-var googleArray;
+var googleArray = [];
 
 // Static data ---------------------------- o
 
@@ -47,15 +47,34 @@ function generateMonth(year,month) {
   return dayArray;
 }
 
+function importGoogle(data) {
+    //if (googleArray == []) {return;}
+    
+    for (var i = 0; i < googleArray.length; i++) {
+      googleArray[i].startTime = (new Date(googleArray[i].startTime));
+      googleArray[i].endTime = (new Date(googleArray[i].endTime));
+    }
+    
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < googleArray.length; j++) {
+        if (sameDay(data[i].date,googleArray[j].startTime)) {
+          data[i].events.push(googleArray[j]);
+        }
+      }
+    }
+    
+}
+
 function loadMonth(year,month) {
   var data = generateMonth(year,month);
   $("#header h2").html(months[currentMonth] + " " + currentYear);
 
-  // importGoogle(data);
+  importGoogle(data);
   // importFaceBook(data);
   // importPHP(data);
-
-  var string = "";
+  
+  // POPULATE CALENDAR CELLS
+  string = "";
   for (var i = 0; i < 5; i++) {
     for (var j = 0; j < 7; j++) {
       string += "<div info='' class='container two columns'></div>";
@@ -101,13 +120,26 @@ function loadMonth(year,month) {
       for (var i = 0; i < currentData.length; i++) {
         if ($(this).attr("info") == currentData[i].date.toString()) {
           selectedDay = currentData[i];
-          console.log(selectedDay.date.toString());
+          console.log(selectedDay.events);
         }
       }
 
       $(this).addClass("selected");
     });
 
+    
+    // POPULATE TO-DO LIST
+    var string = "";
+    for (var i = 0; i < selectedDay.events.length; i++) {
+    string += "<li>";
+      if (events.title) {string += events.title;}
+      if (events.startTime) {string += events.startTime;}
+      if (events.endTime) {string += events.endTime;}
+      if (events.description) {string += events.description;}
+      string += "</li>";
+    }
+    $("#eventsToday").html(string);
+    
     // Increment counter
     i++;
   });
@@ -124,7 +156,6 @@ $(document).ready(function() {
   // Click on the gmail icon
   $("#gmail").click(function() {
     loadCalendarApi();
-    console.log(googleArray);
     currentData = loadMonth(currentYear,currentMonth);
   });
 
