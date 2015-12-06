@@ -26,6 +26,7 @@ body{
 #navBar li {
   margin-left: 3em;
   display: inline;
+  padding: 30px;
 }
 
 #navBar li:first-child {
@@ -33,7 +34,7 @@ body{
 }
 
 #navBar li:hover {
-  color: black;
+  background-color: rgba(255,255, 255, 0.2);;
 }
 
 #brand {
@@ -78,6 +79,7 @@ body{
   margin-top: 25px;
   border: 1px solid #22B573;
   padding-bottom: 30px;
+  margin-bottom: 300px;
 }
 
 #header{
