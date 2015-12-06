@@ -7,6 +7,9 @@ body{
   margin: 0 auto;
   font-family: "Open Sans", georgia, times, serif;
   background: #F5F5F5;
+  background-image: url("images/background.jpeg");
+  background-size: 350px 450px;
+  background-repeat: repeat;
   position: relative;
 }
 
@@ -50,6 +53,8 @@ body{
   border: 1px solid #22B573;
   padding-bottom: 30px;
   margin-bottom: 100px;
+  background: #F5F5F5;
+  border-radius: 8px;
 }
 
 #today h2, #calendar_options h2, #calendar h2 {
@@ -58,6 +63,8 @@ body{
   background-color: #22B573;
   padding: 4px;
   margin-bottom: 10px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 /*Calendar*/
@@ -65,6 +72,8 @@ body{
   border: 1px solid #22B573;
   padding-bottom: 30px;
   margin-top: 25px;
+  background: #F5F5F5;
+  border-radius: 8px;
 }
 
 .week_days li{
@@ -80,6 +89,8 @@ body{
   border: 1px solid #22B573;
   padding-bottom: 30px;
   margin-bottom: 300px;
+  background: #F5F5F5;
+  border-radius: 8px;
 }
 
 #header{
@@ -88,6 +99,8 @@ body{
   margin: 0;
   background-color: #22B573;
   padding: 4px 0px 5px 0px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 #month {
