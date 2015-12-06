@@ -3,6 +3,10 @@ html, body {
   min-height: 100%;
 }
 
+h3 {
+  margin: 4px;
+}
+
 body{
   margin: 0 auto;
   font-family: "Open Sans", georgia, times, serif;
@@ -208,4 +212,16 @@ ul{
   display: block;
   float: right;
   margin-right: 25px;
+}
+
+.title {
+  font-weight: bold;
+  list-style-type: none;
+  margin-left: 5px;
+}
+
+.no_title {
+  list-style-type: none;
+  margin-left: 5px;
+  margin-bottom: 8px;
 }

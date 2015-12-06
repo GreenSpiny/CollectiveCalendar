@@ -49,12 +49,11 @@ function generateMonth(year,month) {
 
 function importGoogle(data) {
     //if (googleArray == []) {return;}
-    
     for (var i = 0; i < googleArray.length; i++) {
       googleArray[i].startTime = (new Date(googleArray[i].startTime));
       googleArray[i].endTime = (new Date(googleArray[i].endTime));
     }
-    
+
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < googleArray.length; j++) {
         if (sameDay(data[i].date,googleArray[j].startTime)) {
@@ -62,7 +61,6 @@ function importGoogle(data) {
         }
       }
     }
-    
 }
 
 function loadMonth(year,month) {
@@ -72,7 +70,7 @@ function loadMonth(year,month) {
   importGoogle(data);
   // importFaceBook(data);
   // importPHP(data);
-  
+
   // POPULATE CALENDAR CELLS
   string = "";
   for (var i = 0; i < 5; i++) {
@@ -125,21 +123,40 @@ function loadMonth(year,month) {
       }
 
       $(this).addClass("selected");
+
+      // POPULATE TO-DO LIST
+      $("#date").html("<h3 id='date'>"+selectedDay.date.toDateString()+"</h3>");
+      var string = "";
+      for (var i = 0; i < selectedDay.events.length; i++) {
+        string += "<li class='title'>";
+        if (selectedDay.events[i].title) {
+          string += selectedDay.events[i].title;
+          string += "</li><li class='no_title'>";
+        }
+        if (selectedDay.events[i].startTime) {
+          string += selectedDay.events[i].startTime.getHours();
+          string += ":";
+          string += selectedDay.events[i].startTime.getMinutes();
+          if(selectedDay.events[i].startTime.getMinutes() == '0'){
+            string += "0";
+          }
+        }
+        if (selectedDay.events[i].endTime) {
+          string += " - ";
+          string += selectedDay.events[i].endTime.getHours();
+          string += ":";
+          string += selectedDay.events[i].endTime.getMinutes();
+          if(selectedDay.events[i].endTime.getMinutes() == '0'){
+            string += "0";
+          }
+        }
+        if (selectedDay.events[i].description) {string += selectedDay.events[i].description;}
+        string += "</li>";
+      }
+      console.log(string);
+      $("#eventsToday").html(string);
     });
 
-    
-    // POPULATE TO-DO LIST
-    var string = "";
-    for (var i = 0; i < selectedDay.events.length; i++) {
-    string += "<li>";
-      if (events.title) {string += events.title;}
-      if (events.startTime) {string += events.startTime;}
-      if (events.endTime) {string += events.endTime;}
-      if (events.description) {string += events.description;}
-      string += "</li>";
-    }
-    $("#eventsToday").html(string);
-    
     // Increment counter
     i++;
   });
