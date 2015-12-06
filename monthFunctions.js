@@ -11,6 +11,8 @@ var currentYear = today.getFullYear();
 var selectedDay;
 var currentData;
 
+var googleArray;
+
 // Static data ---------------------------- o
 
 var calendarDays = 35;
@@ -119,14 +121,10 @@ $(document).ready(function() {
   // Load in the current month
   currentData = loadMonth(currentYear,currentMonth);
 
-  // Scroll between months
-  $(".monthButton").click(function() {
-    var shift = $(this).attr("value");
-    var newDate = new Date(currentYear, currentMonth + parseInt(shift),1);
-    currentYear = newDate.getFullYear();
-    currentMonth = newDate.getMonth();
-
+  // Click on the gmail icon
+  $("#gmail").click(function() {
     loadCalendarApi();
+    console.log(googleArray);
     currentData = loadMonth(currentYear,currentMonth);
   });
 
@@ -211,8 +209,7 @@ function listUpcomingEvents() {
           }
           count--;
           if (count == 0) {
-            console.log(toReturn);
-            return toReturn;
+            googleArray = toReturn;
           }
         });
       }
