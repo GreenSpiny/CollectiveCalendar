@@ -12,14 +12,13 @@
     <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
   </head>
 
-  <body>
+  <body onload="handleAuthClick(event); loadCalendarApi();">
     <!--Nav Bar-->
     <div id="navBar">
 			<ul>
 				<li id="brand">Collective Calendar</li>
 				<li onclick="settings()">Settings</li>
 			</ul>
-    <button id="googleButton" onClick="handleAuthClick(event)"></button>
   </div> <!--nav-->
 
     <!--Settings Overlay-->
@@ -30,6 +29,8 @@
         <p class="green option" onclick="green()"></p>
         <p class="pink option" onclick="pink()"></p>
         <p class="blue option" onclick="blue()"></p>
+        <h2 id="auth">Authenticate Your Accounts</h2>
+        <p id="googleButton" onClick="handleAuthClick(event)">Google</p>
       </div> <!--options-->
     </div> <!--settings-->
 

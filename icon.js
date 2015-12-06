@@ -52,6 +52,7 @@ function green(){
   for (var i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor="#C8E6C9";
   }
+  document.getElementById('options').style.borderBottom = "5px solid #22B573";
 }
 
 function pink(){
@@ -78,6 +79,7 @@ function pink(){
   for (var i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor="#F4CFD5";
   }
+  document.getElementById('options').style.borderBottom = "5px solid #F28898";
 }
 
 function blue(){
@@ -104,4 +106,5 @@ function blue(){
   for (var i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor="#BBDEFB";
   }
+  document.getElementById('options').style.borderBottom = "5px solid #03A9F4";
 }
