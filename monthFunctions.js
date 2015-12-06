@@ -48,7 +48,7 @@ function generateMonth(year,month) {
 function loadMonth(year,month) {
   var data = generateMonth(year,month);
   $("#header h2").html(months[currentMonth] + " " + currentYear);
-  
+
   // importGoogle(data);
   // importFaceBook(data);
   // importPHP(data);
@@ -64,17 +64,17 @@ function loadMonth(year,month) {
 
   var i = 0;
   $(".days div").each(function() {
-  
+
     // Day number
     $(this).html(String(data[i].date.getDate()));
-    
-    // Color coding    
+
+    // Color coding
     if (sameDay(data[i].date,today)) {
-      $(this).addClass("todayColor");  
+      $(this).addClass("todayColor");
       if (selectedDay == null) {
         $(this).addClass("selected");
-        selectedDay = data[i];    
-      }      
+        selectedDay = data[i];
+      }
     }
     else if (data[i].date.getMonth() == currentMonth) {
       $(this).addClass("monthColor");
@@ -82,30 +82,30 @@ function loadMonth(year,month) {
     else {
       $(this).addClass("offColor");
     }
-    
+
     if (selectedDay != null && sameDay(selectedDay.date,data[i].date)) {
       $(this).addClass("selected");
     }
-    
-    // Set info attribute 
+
+    // Set info attribute
     $(this).attr("info",(data[i].date).toString());
-    
+
     // Set click function
     $(this).click(function() {
       $(".days div").each(function() {
         $(this).removeClass("selected");
       });
-      
+
       for (var i = 0; i < currentData.length; i++) {
         if ($(this).attr("info") == currentData[i].date.toString()) {
           selectedDay = currentData[i];
           console.log(selectedDay.date.toString());
         }
       }
-      
+
       $(this).addClass("selected");
     });
-    
+
     // Increment counter
     i++;
   });
@@ -118,18 +118,18 @@ function loadMonth(year,month) {
 $(document).ready(function() {
   // Load in the current month
   currentData = loadMonth(currentYear,currentMonth);
-  
+
   // Scroll between months
   $(".monthButton").click(function() {
     var shift = $(this).attr("value");
     var newDate = new Date(currentYear, currentMonth + parseInt(shift),1);
     currentYear = newDate.getFullYear();
     currentMonth = newDate.getMonth();
-    
+
     loadCalendarApi();
     currentData = loadMonth(currentYear,currentMonth);
   });
-  
+
 });
 
 // ---------------------------------------------------------------------------------------------------------------------//
@@ -170,11 +170,11 @@ function listUpcomingEvents() {
   var toReturn = [];
   var calendars = gapi.client.calendar.calendarList.list();
   var resultList;
-  
+
   calendars.execute(function(resp1){
     resultList = resp1.items;
     var count = resultList.length;
-    
+
       for (var i = 0; i < resultList.length; i++) {
       //console.log(resultList[i].description);
         var request = gapi.client.calendar.events.list({
@@ -188,11 +188,11 @@ function listUpcomingEvents() {
 
         request.execute(function(resp2) {
           var events = resp2.items;
-          
+
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
-              
+
               // GET THE DATA WE NEED
               var startTime = event.start.dateTime;
               if (!startTime) {
@@ -202,10 +202,10 @@ function listUpcomingEvents() {
               if (!endTime) {
                 endTime = event.end.date;
               }
-              
+
               var title = event.summary;
               var description = event.description;
-              
+
               toReturn.push(new Event(startTime,endTime,title,description));
             }
           }

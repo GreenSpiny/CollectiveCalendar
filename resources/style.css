@@ -1,33 +1,38 @@
 /* Main */
+html, body {
+  min-height: 100%;
+}
+
 body{
   margin: 0 auto;
   font-family: "Open Sans", georgia, times, serif;
   background: #F5F5F5;
+  position: relative;
 }
 
 /* Navigation */
-nav {
+#navBar {
   background-color: #22B573;
   color: white;
   margin: 0;
   padding: 2px;
 }
 
-nav ul {
+#navBar ul {
   max-width: 900px;
   margin: 0;
 }
 
-nav li {
+#navBar li {
   margin-left: 3em;
   display: inline;
 }
 
-nav li:first-child {
+#navBar li:first-child {
   margin-left: 0;
 }
 
-nav li:hover {
+#navBar li:hover {
   color: black;
 }
 
@@ -37,16 +42,16 @@ nav li:hover {
 }
 
 /*Today*/
-.today {
+#today {
   display: block;
   float: left;
-  margin: 25px;
+  margin-top: 25px;
   border: 1px solid #22B573;
   padding-bottom: 30px;
   margin-bottom: 100px;
 }
 
-.today h2, .calendar_options h2, .calendar h2 {
+#today h2, #calendar_options h2, #calendar h2 {
   margin: 0 auto;
   color: white;
   background-color: #22B573;
@@ -55,12 +60,10 @@ nav li:hover {
 }
 
 /*Calendar*/
-.calendar_options {
-  display: block;
-  float: right;
-  margin: 25px 25px 25px 0px;
+#calendar_options {
   border: 1px solid #22B573;
   padding-bottom: 30px;
+  margin-top: 25px;
 }
 
 .week_days li{
@@ -71,10 +74,8 @@ nav li:hover {
   font-weight: bold;
 }
 
-.calendar {
-  display: block;
-  float: right;
-  margin: 25px 25px 25px 0px;
+#calendar {
+  margin-top: 25px;
   border: 1px solid #22B573;
   padding-bottom: 30px;
 }
@@ -141,4 +142,55 @@ ul{
 /*icon*/
 .icon {
   margin: 10px 10px 10px 20px;
+}
+
+/*settings overlay*/
+#settings{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.option {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 25px;
+  margin: 20px;
+}
+
+#options {
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 200px;
+  left: 350px;
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+}
+
+.green {
+  background-color: #22B573;
+}
+
+.pink {
+  background-color: #F28898;
+}
+
+.blue {
+  background-color: #03A9F4;
+}
+
+#select_color {
+  margin-left: 20px;
+}
+
+#close {
+  display: block;
+  float: right;
+  margin-right: 25px;
 }

@@ -14,17 +14,28 @@
 
   <body>
     <!--Nav Bar-->
-    <nav>
+    <div id="navBar">
 			<ul>
 				<li id="brand">Collective Calendar</li>
-				<li>Settings</li>
+				<li onclick="settings()">Settings</li>
 			</ul>
     <button id="googleButton" onClick="handleAuthClick(event)"></button>
-		</nav>
+  </div> <!--nav-->
+
+    <!--Settings Overlay-->
+    <div id="settings">
+      <div id="options">
+        <p id="close" onclick="close_settings()">X</p>
+        <h2 id="select_color">Select Your Color Theme</h2>
+        <p class="green option" onclick="green()"></p>
+        <p class="pink option" onclick="pink()"></p>
+        <p class="blue option"></p>
+      </div> <!--options-->
+    </div> <!--settings-->
 
     <!--Today -->
     <div class="container sixteen columns">
-      <div class="today container four columns">
+      <div id="today" class="container four columns">
         <h2 id="date">TODAY</h2>
         <ul id="eventsToday">
         </ul>
@@ -32,14 +43,14 @@
 
       <!--Calendar Options-->
       <div class="container twelve columns">
-        <div class="calendar_options container thirteen columns">
+        <div id="calendar_options" class="container thirteen columns">
           <h2 id="calendarOptions">CALENDARS</h2>
           <img onclick="gmail_change()" class="icon" id="gmail" src="resources/images/gmail_icon.png" alt="Gmail Color Icon" height="42" width="42">
           <img onclick="fb_change()" class="icon" id="fb" src="resources/images/fb_icon.png" alt="Facebook Color Icon" height="42" width="42">
         </div><!--calendar_options-->
 
         <!--Calendar with the events -->
-        <div class="calendar container thirteen columns">
+        <div id="calendar" class="container thirteen columns">
           <div id="header">
             <span class="monthButton" value="-1"><</span>
             <h2 id="month">Month</h2>
